@@ -4,11 +4,13 @@
     <meta charset="UTF-8">
     <title>Disc Golf Weekly</title>
     <link href="css/bootstrap.css" type="text/css" rel="stylesheet">
+    <link href="css/disc-golf-weekly.css" type="text/css" rel="stylesheet">
 </head>
 <body id="DG" v-cloak>
-    <div class="row header-container">
+    <div class="row container-fluid header-container">
         <div class="col-12 settings">
-            <div class="people-per-team-container">
+            <h2>Settings</h2>
+            <div class="people-per-team-container settings-item">
                 <label>People per team :</label>
                 <select v-model="peoplePerTeam">
                     <option v-for="option in peoplePerTeamOptions" :value="option.value">
@@ -16,7 +18,7 @@
                     </option>
                 </select>
             </div>
-            <div class="high-low-container">
+            <div class="high-low-container settings-item">
                 <label>High Low or Random Draw (Doubles) :</label>
                 <select v-model="highLowOrRandom">
                     <option v-for="option in highLowOrRandomOptions" :value="option.value">
@@ -24,21 +26,67 @@
                     </option>
                 </select>
             </div>
-            <div class="min-per-card-container">
+            <div class="max-per-card-container settings-item">
+                <label>Maximum per Card :</label>
+                <select v-model="maximumPerCard" @change="minMaxChange">
+                    <option v-for="option in maximumPerCardOptions" :value="option.value">
+                        {{ option.text }}
+                    </option>
+                </select>
+            </div>
+            <div class="min-per-card-container settings-item">
                 <label>Minimum per Card :</label>
-                <select v-model="minimumPerCard">
+                <select v-model="minimumPerCard" @change="minMaxChange">
                     <option v-for="option in minimumPerCardOptions" :value="option.value">
                         {{ option.text }}
                     </option>
                 </select>
             </div>
-            <div class="max-per-card-container">
-                <label>Maximum per Card :</label>
-                <select v-model="maximumPerCard">
-                    <option v-for="option in maximumPerCardOptions" :value="option.value">
-                        {{ option.text }}
-                    </option>
-                </select>
+        </div>
+    </div>
+    <div class="row container-fluid entry-container">
+        <div class="col-12 entries ">
+            <div class="row entry-header">
+                <div class="col-10">
+                    <h2>Players</h2>
+                </div>
+                <div class="col-2 assign-button-container">
+                    <button class="btn btn-primary" @click="addPlayer">Add Player</button>
+                </div>
+            </div>
+
+            <div class="col-12 table-container">
+                <table class="person-table" >
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Is TD? (Hole 1)</th>
+                            <th v-if="!disableDivision">Division</th>
+                            <th>Remove</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="( person, personIndex ) in persons">
+                            <td><input class="playerNames" type="text" v-model="person.name" @keyup.enter="addPlayer" :size="100"></td>
+                            <td><input type="checkbox" v-model="person.isTD"></td>
+                            <td v-if="!disableDivision">
+                                <select class="division-select" v-model="person.highLowSelect" :disabled="disableDivision">
+                                    <option v-for="option in person.highLowOptions" :value="option.value">
+                                        {{ option.text }}
+                                    </option>
+                                </select>
+                            </td>
+                            <td>
+                                <button class="btn btn-danger" @click="removePlayer(personIndex)">Remove</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+
+            <div class="row entry-footer">
+                <button class="btn btn-success" @click="assignPlayers">Assign Players</button>
             </div>
         </div>
     </div>
@@ -46,4 +94,3 @@
 <script src="js/bootstrap.js" type="text/javascript"></script>
 <script src="https://unpkg.com/vue@next"></script>
 <script src="js/disc-golf-weekly.js" type="text/javascript"></script>
-</html>

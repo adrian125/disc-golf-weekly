@@ -1,0 +1,62 @@
+/* settings container */
+.header-container .settings, .entry-container .entries{
+    background-color: #f1f1f1;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+.header-container .settings .settings-item {
+    margin: 10px 0;
+}
+
+.header-container .settings .settings-item select {
+    margin-left: 10px;
+}
+
+
+/* entry container */
+.entry-container .entry-header{
+    margin-bottom: 20px;
+}
+
+.entry-container .entry-header, .entry-container .entry-footer{
+    margin-top: 10px;
+}
+
+.entry-container .entry-header .assign-button-container{
+    text-align: right;
+}
+
+.entry-container .entry-header .assign-button-container button{
+    margin-left: 10px !important;
+}
+
+.entry-container .table-container{
+    background-color: white;
+}
+
+
+/* table styles */
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td,th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #c1c1c1;
+}
+
+tbody tr:hover{
+    background-color: #85cbff;
+}
+
+.division-select{
+    width: 100% !important;
+}
