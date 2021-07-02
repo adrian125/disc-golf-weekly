@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Disc Golf Weekly</title>
+    <link href="css/bootstrap.css" type="text/css" rel="stylesheet">
+</head>
+<body id="DG" v-cloak>
+    <div class="row header-container">
+        <div class="col-12 settings">
+            <div class="people-per-team-container">
+                <label>People per team :</label>
+                <select v-model="peoplePerTeam">
+                    <option v-for="option in peoplePerTeamOptions" :value="option.value">
+                        {{ option.text }}
+                    </option>
+                </select>
+            </div>
+            <div class="high-low-container">
+                <label>High Low or Random Draw (Doubles) :</label>
+                <select v-model="highLowOrRandom">
+                    <option v-for="option in highLowOrRandomOptions" :value="option.value">
+                        {{ option.text }}
+                    </option>
+                </select>
+            </div>
+            <div class="min-per-card-container">
+                <label>Minimum per Card :</label>
+                <select v-model="minimumPerCard">
+                    <option v-for="option in minimumPerCardOptions" :value="option.value">
+                        {{ option.text }}
+                    </option>
+                </select>
+            </div>
+            <div class="max-per-card-container">
+                <label>Maximum per Card :</label>
+                <select v-model="maximumPerCard">
+                    <option v-for="option in maximumPerCardOptions" :value="option.value">
+                        {{ option.text }}
+                    </option>
+                </select>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="js/bootstrap.js" type="text/javascript"></script>
+<script src="https://unpkg.com/vue@next"></script>
+<script src="js/disc-golf-weekly.js" type="text/javascript"></script>
+</html>
